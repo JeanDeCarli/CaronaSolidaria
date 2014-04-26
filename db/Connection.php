@@ -14,8 +14,6 @@ class Connection {
 #método que inicia conexao 
 
     function open() {
-        //$this->con = @pg_connect(“host=$this->host user = $this->user
-        //password = $this->pswd dbname = $this->dbname“);
         $this->con = @pg_connect($connection_string);
         return $this->con;
     }
