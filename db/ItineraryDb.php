@@ -7,7 +7,7 @@ class ItineraryDb extends Connection{
         $cnn = new Connection();
         
         $cnn->open();
-        $consulta=pg_query("SELECT *FROM nomedatabela order by nome ASC");
+        $consulta=pg_query("select Description from Itinerary;");
         $cnn->close();
         return $consulta;
     }
