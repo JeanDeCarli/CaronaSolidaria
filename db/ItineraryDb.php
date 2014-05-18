@@ -1,14 +1,22 @@
 <?php
 
-class ItineraryDb extends Connection{
+class ItineraryDb{
     
-    public function getItinerarysDescription()
+    public function getItinerarysDescription($od)
     {
+        require_once 'Connection.php';
+        
         $cnn = new Connection();
         
         $cnn->open();
-        $consulta=pg_query("select Description from Itinerary;");
+        if ($od == 'origem'){
+            $consulta=pg_query('select * from "Itinerary" where "IdType" = 1;');
+        }  else {
+            $consulta=pg_query('select * from "Itinerary" where "IdType" = 2;');
+        }
+        
         $cnn->close();
+        
         return $consulta;
     }
 }

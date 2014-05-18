@@ -11,9 +11,9 @@
         <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        
+
         <!--<link rel="shortcut icon" href="link icone"> icone que fica na aba do navegador  -->
-        
+
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-wU1R3sXIRrmhb1ckuve35LT6_C0O60&sensor=false"></script>
 
         <script src="js/mapsJs.js" type="text/javascript"></script>
@@ -71,42 +71,52 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Origem <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <?php
-                                        require_once './db/ItineraryDb.php';
-                                        
-                                        $iDb = new ItineraryDb();
-                                        $result = $iDb->getItinerarysDescription();
-                                        $row = pg_num_rows($result);
-                                        $i = 0;
-                                        
-                                        while ($i < $row){
-                                            while ($opcao = pg_fetch_array($result)){
-                                                $opIt = $opcao['Description'];
-                                                echo '<li><a href="#">'.$opIt.'</a></li>';
-                                                
-                                                $i++;
-                                            }
+                                    require_once './db/ItineraryDb.php';
+                                    $iDb = new ItineraryDb();
+
+                                    $result = $iDb->getItinerarysDescription('origem');
+
+                                    $row = pg_num_rows($result);
+                                    $i = 0;
+
+                                    while ($i < $row) {
+                                        while ($opcao = pg_fetch_array($result)) {
+                                            $opIt = $opcao['Description'];
+                                            echo '<li><a href="#">' . $opIt . '</a></li>';
+
+                                            $i++;
                                         }
+                                    }
                                     ?>
-                                    
-                                    
-                                    <!--<li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li><a href="#">Separated link</a></li>-->
                                 </ul>
                             </div><!-- /btn-group -->
                             <input type="text" class="form-control" readonly="readonly">
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    
+
                     <div class="col-lg-5">
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Destino <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
+                                    <?php
+                                    require_once './db/ItineraryDb.php';
+                                    $iDb = new ItineraryDb();
+
+                                    $result = $iDb->getItinerarysDescription('destino');
+
+                                    $row = pg_num_rows($result);
+                                    $i = 0;
+
+                                    while ($i < $row) {
+                                        while ($opcao = pg_fetch_array($result)) {
+                                            $opIt = $opcao['Description'];
+                                            echo '<li><a href="#">' . $opIt . '</a></li>';
+
+                                            $i++;
+                                        }
+                                    }
+                                    ?>
                                 </ul>
                             </div><!-- /btn-group -->
                             <input type="text" class="form-control" readonly="readonly">
@@ -116,8 +126,8 @@
                 </div><!-- /.row -->
                 <br/>
                 <legend></legend>
-                
-                
+
+
                 <div class="list-group col-lg-2" id="result">
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
@@ -133,12 +143,12 @@
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                 </div><!-- essa div e a da lista da esquerda-->
-                
+
                 <div class="col-lg-10" id="loadGmap"></div><!-- essa div e a do mapa-->
 
 
 
-                
+
             </div>
 
             <!-- FOOTER -->
@@ -150,7 +160,7 @@
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
-        
+
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script>
