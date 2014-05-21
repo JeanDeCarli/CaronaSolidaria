@@ -22,6 +22,8 @@
         <div class="navbar-wrapper">
             <div class="container">
 
+                
+                <!-- inicio do menu!!! -->
                 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
                     <div class="container">
                         <div class="navbar-header">
@@ -57,6 +59,7 @@
 
             </div>
         </div>
+               <!-- FIM DO MENU.......-->
 
 
         <div class="container">
@@ -82,7 +85,7 @@
                                     while ($i < $row) {
                                         while ($opcao = pg_fetch_array($result)) {
                                             $opIt = $opcao['Description'];
-                                            echo '<li><a href="#">' . $opIt . '</a></li>';
+                                            echo '<li><a href="#" id="jean_' . $opIt . '">' . $opIt . '</a></li>';
 
                                             $i++;
                                         }

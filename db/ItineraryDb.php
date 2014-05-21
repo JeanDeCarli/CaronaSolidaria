@@ -10,9 +10,9 @@ class ItineraryDb{
         
         $cnn->open();
         if ($od == 'origem'){
-            $consulta=pg_query('select * from "Itinerary" where "IdType" = 1;');
+            $consulta=pg_query('select * from "Itinerary" where "IdType" = 1 and "IdUser" = 1;');
         }  else {
-            $consulta=pg_query('select * from "Itinerary" where "IdType" = 2;');
+            $consulta=pg_query('select * from "Itinerary" where "IdType" = 2 and "IdUser" = 1;');
         }
         
         $cnn->close();
