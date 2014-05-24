@@ -74,7 +74,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Origem <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    require_once './db/ItineraryDb.php';
+                                    require_once './db/pesquisaItinerarioDb.php';
                                     $iDb = new ItineraryDb();
 
                                     $result = $iDb->getItinerarysDescription('origem');
@@ -85,15 +85,16 @@
                                     while ($i < $row) {
                                         while ($opcao = pg_fetch_array($result)) {
                                             $opIt = $opcao['Description'];
-                                            echo '<li><a href="#" id="jean_' . $opIt . '">' . $opIt . '</a></li>';
+                                            echo '<li><a href="#" id="origemBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
 
                                             $i++;
                                         }
                                     }
                                     ?>
+                                    
                                 </ul>
                             </div><!-- /btn-group -->
-                            <input type="text" class="form-control" readonly="readonly">
+                            <input type="text" class="form-control" readonly="readonly" id="origemTxt">
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
 
@@ -103,7 +104,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Destino <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    require_once './db/ItineraryDb.php';
+                                    require_once './db/pesquisaItinerarioDb.php';
                                     $iDb = new ItineraryDb();
 
                                     $result = $iDb->getItinerarysDescription('destino');
@@ -114,7 +115,7 @@
                                     while ($i < $row) {
                                         while ($opcao = pg_fetch_array($result)) {
                                             $opIt = $opcao['Description'];
-                                            echo '<li><a href="#">' . $opIt . '</a></li>';
+                                            echo '<li><a href="#" id="destinoBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
 
                                             $i++;
                                         }
@@ -122,7 +123,7 @@
                                     ?>
                                 </ul>
                             </div><!-- /btn-group -->
-                            <input type="text" class="form-control" readonly="readonly">
+                            <input type="text" class="form-control" readonly="readonly" id="destinoTxt">
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                     <button class="btn btn-primary col-lg-1">Pesquisar</button>
@@ -165,6 +166,7 @@
         ================================================== -->
 
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/pesquisaItinerario.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.js"></script>
     </body>
