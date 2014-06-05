@@ -22,7 +22,7 @@
         <div class="navbar-wrapper">
             <div class="container">
 
-                
+
                 <!-- inicio do menu!!! -->
                 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
                     <div class="container">
@@ -59,7 +59,7 @@
 
             </div>
         </div>
-               <!-- FIM DO MENU.......-->
+        <!-- FIM DO MENU.......-->
 
 
         <div class="container">
@@ -67,67 +67,99 @@
             <div class="jumbotron pager">
 
                 <legend><h2>Pesquisa de Itinerário</h2></legend>
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Origem <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    require_once './db/pesquisaItinerarioDb.php';
-                                    $iDb = new ItineraryDb();
+                <form>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Origem <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <?php
+                                        require_once './db/pesquisaItinerarioDb.php';
+                                        $iDb = new ItineraryDb();
 
-                                    $result = $iDb->getItinerarysDescription('origem');
+                                        $result = $iDb->getItinerarysDescription('origem');
 
-                                    $row = pg_num_rows($result);
-                                    $i = 0;
+                                        $row = pg_num_rows($result);
+                                        $i = 0;
 
-                                    while ($i < $row) {
-                                        while ($opcao = pg_fetch_array($result)) {
-                                            $opIt = $opcao['Description'];
-                                            echo '<li><a href="#" id="origemBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
+                                        while ($i < $row) {
+                                            while ($opcao = pg_fetch_array($result)) {
+                                                $opIt = $opcao['Description'];
+                                                echo '<li><a href="#" id="origemBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
 
-                                            $i++;
+                                                $i++;
+                                            }
                                         }
-                                    }
-                                    ?>
-                                    
-                                </ul>
-                            </div><!-- /btn-group -->
-                            <input type="text" class="form-control" readonly="readonly" id="origemTxt">
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
+                                        ?>
 
-                    <div class="col-lg-5">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Destino <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    require_once './db/pesquisaItinerarioDb.php';
-                                    $iDb = new ItineraryDb();
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" readonly="readonly" id="origemTxt">
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
 
-                                    $result = $iDb->getItinerarysDescription('destino');
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="btnDestino">Destino <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <?php
+                                        require_once './db/pesquisaItinerarioDb.php';
+                                        $iDb = new ItineraryDb();
 
-                                    $row = pg_num_rows($result);
-                                    $i = 0;
+                                        $result = $iDb->getItinerarysDescription('destino');
 
-                                    while ($i < $row) {
-                                        while ($opcao = pg_fetch_array($result)) {
-                                            $opIt = $opcao['Description'];
-                                            echo '<li><a href="#" id="destinoBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
+                                        $row = pg_num_rows($result);
+                                        $i = 0;
 
-                                            $i++;
+                                        while ($i < $row) {
+                                            while ($opcao = pg_fetch_array($result)) {
+                                                $opIt = $opcao['Description'];
+                                                echo '<li><a href="#" id="destinoBtn" onclick="getEndereco()">' . $opIt . '</a></li>';
+
+                                                $i++;
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </ul>
-                            </div><!-- /btn-group -->
-                            <input type="text" class="form-control" readonly="readonly" id="destinoTxt">
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                    <button class="btn btn-primary col-lg-1">Pesquisar</button>
-                </div><!-- /.row -->
+                                        ?>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" readonly="readonly" id="destinoTxt">
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+
+                    </div><!-- /.row -->
+                    <br/>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Turno &nbsp;&nbsp;<span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" id="destinoBtn" onclick="getTurno()">Manha</a></li>
+                                        <li><a href="#" id="destinoBtn" onclick="getTurno()">Tarde</a></li>
+                                        <li><a href="#" id="destinoBtn" onclick="getTurno()">Noite</a></li>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" readonly="readonly" id="turnoTxt">
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-5 -->
+
+                        <div class="input-group col-lg-6">
+                            <div class="col-lg-6">
+                                <button class="btn btn-primary col-lg-12" onclick="camposObrigatorios()">Pesquisar</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <!--<button class="btn btn-primary col-lg-12" onclick="limpaCamposPesquisa()">Limpar</button>-->
+                                <input type="reset" class="btn btn-primary col-lg-12" value="Limpar">
+                            </div>
+
+
+                        </div>
+
+                    </div><!-- /.row -->
+                </form>
                 <br/>
                 <legend></legend>
 
@@ -167,7 +199,8 @@
 
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/pesquisaItinerario.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+        <script src="js/jquery-1.11.1.min.js"></script>
         <script src="js/bootstrap.js"></script>
     </body>
 </html>
