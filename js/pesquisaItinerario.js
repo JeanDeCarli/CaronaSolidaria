@@ -10,6 +10,11 @@ function getEndereco() {
             },
     function(data) {
         if (od == "origemBtn"){
+            var destinoTxt = $('#destinoTxt').val();
+            if(data == destinoTxt){
+                alert("Selecione outro Destino para efetuar a pesquisa.")
+                $('#origemTxt').val(null);
+            }else{
                 if (descricao == 'Faculdade'){
                     $('#origemTxt').val(data);
                     $("#btnDestino").removeAttr("disabled");
@@ -27,6 +32,7 @@ function getEndereco() {
                         }
                     )
                 }
+            } 
         }
         else{
             var origemTxt = $('#origemTxt').val();
@@ -47,3 +53,6 @@ function getTurno(){
     $('#turnoTxt').val(descricao);
 }
 
+function habilitaDestino(){
+    $("#btnDestino").removeAttr("disabled");
+}

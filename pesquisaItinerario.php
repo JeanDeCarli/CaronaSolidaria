@@ -151,8 +151,8 @@
                                 <button class="btn btn-primary col-lg-12" onclick="camposObrigatorios()">Pesquisar</button>
                             </div>
                             <div class="col-lg-6">
-                                <!--<button class="btn btn-primary col-lg-12" onclick="limpaCamposPesquisa()">Limpar</button>-->
-                                <input type="reset" class="btn btn-primary col-lg-12" value="Limpar">
+                                
+                                <input type="reset" class="btn btn-primary col-lg-12" value="Limpar" onclick="habilitaDestino()">
                             </div>
 
 
