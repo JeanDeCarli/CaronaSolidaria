@@ -148,7 +148,7 @@
 
                         <div class="input-group col-lg-6">
                             <div class="col-lg-6">
-                                <button class="btn btn-primary col-lg-12" onclick="camposObrigatorios()">Pesquisar</button>
+                                <button class="btn btn-primary col-lg-12" onclick="getMatricula()">Pesquisar</button>
                             </div>
                             <div class="col-lg-6">
                                 

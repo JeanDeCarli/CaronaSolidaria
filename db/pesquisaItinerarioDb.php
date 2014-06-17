@@ -40,6 +40,29 @@ class ItineraryDb {
         echo $consulta['Address'];
     }
 
+    public function getMatriculaPorEndereco($endOrigem, $endDestino) {
+        require_once 'Connection.php';
+        
+        $desc = "'" . $endOrigem . "'";
+        $desc = "'" . $endDestino . "'";
+
+        $cnn = new Connection();
+
+        $cnn->open();
+
+        $consulta = pg_query('select u."Registration" from "User" u inner join "Itinerary" i on u."Id" = i."IdUser" '
+                . 'where i.neighborhood = (select neighborhood from "Itinerary" where "Address" = '. $endOrigem .' limit 1) and "IdType" = 1 '
+                . 'intersect '
+                . 'select u."Registration" from "User" u inner join "Itinerary" i on u."Id" = i."IdUser" '
+                . 'where i.neighborhood = (select neighborhood from "Itinerary" where "Address" = '. $endDestino .' limit 1) and "IdType" = 2;');
+
+        $cnn->close();
+
+        $consulta = pg_fetch_array($consulta);
+
+        echo $consulta;
+    }
+
 }
 
 ?>

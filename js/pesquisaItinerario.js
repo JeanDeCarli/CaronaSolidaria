@@ -9,37 +9,37 @@ function getEndereco() {
                 getEnderecoOD: od
             },
     function(data) {
-        if (od == "origemBtn"){
+        if (od == "origemBtn") {
             var destinoTxt = $('#destinoTxt').val();
-            if(data == destinoTxt){
+            if (data == destinoTxt) {
                 alert("Selecione outro Destino para efetuar a pesquisa.")
                 $('#origemTxt').val(null);
-            }else{
-                if (descricao == 'Faculdade'){
+            } else {
+                if (descricao == 'Faculdade') {
                     $('#origemTxt').val(data);
                     $("#btnDestino").removeAttr("disabled");
-                }else{
+                } else {
                     $('#origemTxt').val(data);
-                    
+
                     $.post("./controle/pesquisaItinerarioControle.php",
-                        {
-                            getEndereco: "Faculdade",
-                            getEnderecoOD: od
-                        },
-                        function(data2){
-                            $('#destinoTxt').val(data2);
-                            $("#btnDestino").attr("disabled", "disabled");
-                        }
+                            {
+                                getEndereco: "Faculdade",
+                                getEnderecoOD: od
+                            },
+                    function(data2) {
+                        $('#destinoTxt').val(data2);
+                        $("#btnDestino").attr("disabled", "disabled");
+                    }
                     )
                 }
-            } 
+            }
         }
-        else{
+        else {
             var origemTxt = $('#origemTxt').val();
-            if(data == origemTxt){
+            if (data == origemTxt) {
                 alert("Selecione outro Destino para efetuar a pesquisa.")
                 $('#destinoTxt').val(null);
-            }else{
+            } else {
                 $('#destinoTxt').val(data);
             }
         }
@@ -47,12 +47,33 @@ function getEndereco() {
     );
 }
 
-function getTurno(){
+function getTurno() {
     var descricao = event.srcElement.innerText;
-    
+
     $('#turnoTxt').val(descricao);
 }
 
-function habilitaDestino(){
+function habilitaDestino() {
     $("#btnDestino").removeAttr("disabled");
+}
+
+function getMatricula() {
+    var endOrigem = $('#origemTxt').val();
+    var endDestino = $('#destinoTxt').val();
+    var turno = $('#turnoTxt').val();
+
+    if (endOrigem == "" || endDestino == "" || turno == "") {
+        alert("Todos os campos são de preenchimento obrigatório.");
+    } else {
+        
+        $.post("./controle/pesquisaItinerarioControle.php",
+                {
+                    getMatriculaOrigem: endOrigem,
+                    getMatriculaDestino: endDestino
+                },
+        function(data) {
+            alert(data);
+        }
+        )
+    }
 }
