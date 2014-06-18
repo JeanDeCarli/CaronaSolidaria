@@ -21,7 +21,7 @@ class ItineraryDb {
 
     public function getItinereryAddress($desc, $od) {
         require_once 'Connection.php';
-
+        addslashes($desc);
         $desc = "'" . $desc . "'";
 
         $cnn = new Connection();
@@ -43,9 +43,12 @@ class ItineraryDb {
     public function getMatriculaPorEndereco($endOrigem, $endDestino) {
         require_once 'Connection.php';
         
-        $desc = "'" . $endOrigem . "'";
-        $desc = "'" . $endDestino . "'";
-
+        $endOrigem = addslashes($endOrigem);
+        $endDestino = addslashes($endDestino);
+        
+        $endOrigem = "'" . $endOrigem . "'";
+        $endDestino = "'" . $endDestino . "'";
+        
         $cnn = new Connection();
 
         $cnn->open();
@@ -58,9 +61,11 @@ class ItineraryDb {
 
         $cnn->close();
 
-        $consulta = pg_fetch_array($consulta);
+        //$consulta = pg_fetch_array($consulta);
+        //$consultaJson = json_encode($consulta);
 
-        echo $consulta;
+        //echo $consultaJson;
+        return $consulta;
     }
 
 }

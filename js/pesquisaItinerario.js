@@ -56,24 +56,3 @@ function getTurno() {
 function habilitaDestino() {
     $("#btnDestino").removeAttr("disabled");
 }
-
-function getMatricula() {
-    var endOrigem = $('#origemTxt').val();
-    var endDestino = $('#destinoTxt').val();
-    var turno = $('#turnoTxt').val();
-
-    if (endOrigem == "" || endDestino == "" || turno == "") {
-        alert("Todos os campos são de preenchimento obrigatório.");
-    } else {
-        
-        $.post("./controle/pesquisaItinerarioControle.php",
-                {
-                    getMatriculaOrigem: endOrigem,
-                    getMatriculaDestino: endDestino
-                },
-        function(data) {
-            alert(data);
-        }
-        )
-    }
-}

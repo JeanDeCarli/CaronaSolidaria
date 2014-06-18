@@ -67,7 +67,7 @@
             <div class="jumbotron pager">
 
                 <legend><h2>Pesquisa de Itinerário</h2></legend>
-                <form>
+                <form action="pesquisaItinerario.php" method="post">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
@@ -95,7 +95,7 @@
 
                                     </ul>
                                 </div><!-- /btn-group -->
-                                <input type="text" class="form-control" readonly="readonly" id="origemTxt">
+                                <input type="text" class="form-control" readonly="readonly" id="origemTxt" name="origemTxt" title="origemTxt">
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
 
@@ -124,7 +124,7 @@
                                         ?>
                                     </ul>
                                 </div><!-- /btn-group -->
-                                <input type="text" class="form-control" readonly="readonly" id="destinoTxt">
+                                <input type="text" class="form-control" readonly="readonly" id="destinoTxt" name="destinoTxt" title="destinoTxt">
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
 
@@ -148,7 +148,8 @@
 
                         <div class="input-group col-lg-6">
                             <div class="col-lg-6">
-                                <button class="btn btn-primary col-lg-12" onclick="getMatricula()">Pesquisar</button>
+                                <input type="submit" class="btn btn-primary col-lg-12" value="Pesquisar" title="Pesquisar"/>
+                                <!--<button class="btn btn-primary col-lg-12" onclick="getMatricula()">Pesquisar</button>-->
                             </div>
                             <div class="col-lg-6">
                                 
@@ -165,6 +166,27 @@
 
 
                 <div class="list-group col-lg-2" id="result">
+                    <?php
+                    if (isset($_POST['origemTxt']) && isset($_POST['destinoTxt'])) {
+                        $endOrigem = $_POST['origemTxt'];
+                        $endDestino = $_POST['destinoTxt'];
+                        if (($endOrigem != NULL || $endOrigem != "") && ($endDestino != NULL || $endDestino != "")) {
+                            require_once './db/pesquisaItinerarioDb.php';
+                            $iDb = new ItineraryDb();
+
+                            $result = $iDb->getMatriculaPorEndereco($endOrigem, $endDestino);
+                            echo count($result);
+                            $result = pg_fetch_array($result);
+
+                            foreach ($result as $value) {
+                                echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> ' . $value . '</label>';
+                            }
+                        }
+                    }
+                    ?>
+
+
+                    <!--<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
@@ -176,8 +198,7 @@
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
                     <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
+                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>-->
                 </div><!-- essa div e a da lista da esquerda-->
 
                 <div class="col-lg-10" id="loadGmap"></div><!-- essa div e a do mapa-->
