@@ -175,30 +175,22 @@
                             $iDb = new ItineraryDb();
 
                             $result = $iDb->getMatriculaPorEndereco($endOrigem, $endDestino);
-                            echo count($result);
-                            $result = pg_fetch_array($result);
 
-                            foreach ($result as $value) {
-                                echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> ' . $value . '</label>';
+                            $row = pg_num_rows($result);
+                            $i = 0;
+
+                            while ($i < $row) {
+                                while ($opcao = pg_fetch_array($result)) {
+                                    $opRegistration = $opcao['Registration'];
+                                    echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left" onselect="gerarRota($endOrigem, $endDestino)"> ' . $opRegistration . '</label>';
+
+                                    $i++;
+                                }
                             }
                         }
                     }
                     ?>
-
-
-                    <!--<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>
-                    <label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left"> 631210066</label>-->
+                    
                 </div><!-- essa div e a da lista da esquerda-->
 
                 <div class="col-lg-10" id="loadGmap"></div><!-- essa div e a do mapa-->
