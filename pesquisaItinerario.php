@@ -182,7 +182,7 @@
                             while ($i < $row) {
                                 while ($opcao = pg_fetch_array($result)) {
                                     $opRegistration = $opcao['Registration'];
-                                    echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left" onselect="gerarRota($endOrigem, $endDestino)"> ' . $opRegistration . '</label>';
+                                    echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left" onclick="gerarRota('.$endOrigem.', '.$endDestino.')"> ' . $opRegistration . '</label>';
 
                                     $i++;
                                 }
@@ -194,6 +194,7 @@
                 </div><!-- essa div e a da lista da esquerda-->
 
                 <div class="col-lg-10" id="loadGmap"></div><!-- essa div e a do mapa-->
+                <div id="route" style="width: 300px; height: 500px; position: absolute; right: 0; top: 0;"></div> <!--exibe rota-->
 
 
 

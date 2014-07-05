@@ -60,11 +60,6 @@ class ItineraryDb {
                 . 'where i.neighborhood = (select neighborhood from "Itinerary" where "Address" = '. $endDestino .' limit 1) and "IdType" = 2;');
 
         $cnn->close();
-
-        //$consulta = pg_fetch_array($consulta);
-        //$consultaJson = json_encode($consulta);
-
-        //echo $consultaJson;
         return $consulta;
     }
 
