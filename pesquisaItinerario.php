@@ -33,14 +33,16 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Logo do Carona Solidaria</a>
+                            <a class="navbar-brand" href="#">SenaCaronaS</a>
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                                <li class="dropdown">
+                                <li><a href="#">Meu Perfil</a></li>
+                                <li><a href="#">Cadastro de Itinerario</a></li>
+                                <li class="active"><a href="pesquisaItinerario.php">Pesquisa Itinerario</a></li>
+                                
+                                
+<!--                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Action</a></li>
@@ -51,7 +53,7 @@
                                         <li><a href="#">Separated link</a></li>
                                         <li><a href="#">One more separated link</a></li>
                                     </ul>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -190,6 +192,7 @@
                                     $i++;
                                 }
                             }
+                            echo '<br/><button name="Pedir Carona" value="Pedir Carona" class="btn btn-primary">Pedir Carona</button>';
                         }
                     }
                     ?>
