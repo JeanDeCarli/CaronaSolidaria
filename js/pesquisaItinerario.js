@@ -47,6 +47,33 @@ function getEndereco() {
     );
 }
 
+function calculaRota(endOrigem, endDestino) {
+    var matricula = event.target.id;
+    var start;
+    var end;
+    $.post("./controle/pesquisaItinerarioControle.php",
+            {
+                calculaRotaRegistration: matricula,
+                calculaRotaOD: "origem",
+                calculaRotaAddress: endOrigem,
+            },
+            function(data) {
+                $.post("./controle/pesquisaItinerarioControle.php",
+                        {
+                            calculaRotaRegistration: matricula,
+                            calculaRotaOD: "destino",
+                            calculaRotaAddress: endDestino,
+                        },
+                        function(data2) {
+                            start = data;
+                            end = data2;
+                            calcRoute(start, end);
+                        }
+                )
+            }
+    )
+}
+
 function getTurno() {
     var descricao = event.srcElement.innerText;
 

@@ -178,11 +178,14 @@
 
                             $row = pg_num_rows($result);
                             $i = 0;
-
+                            
+                            $endOrigem = "'". $endOrigem . "'";
+                            $endDestino = "'". $endDestino . "'";
+                            
                             while ($i < $row) {
                                 while ($opcao = pg_fetch_array($result)) {
                                     $opRegistration = $opcao['Registration'];
-                                    echo '<label class="list-group-item"><input type="checkbox" name="rotaM" class="pull-left" onclick="gerarRota('.$endOrigem.', '.$endDestino.')"> ' . $opRegistration . '</label>';
+                                    echo '<label class="list-group-item"><input type="radio" name="rotaM" class="pull-left" id="' . $opRegistration . '" onclick="calculaRota('. $endOrigem .', '. $endDestino .')"> ' . $opRegistration . '</label>';
 
                                     $i++;
                                 }
