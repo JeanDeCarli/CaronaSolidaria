@@ -40,20 +40,20 @@
                                 <li><a href="#">Meu Perfil</a></li>
                                 <li><a href="#">Cadastro de Itinerario</a></li>
                                 <li class="active"><a href="pesquisaItinerario.php">Pesquisa Itinerario</a></li>
-                                
-                                
-<!--                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                </li>-->
+
+
+                                <!--                                <li class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a href="#">Action</a></li>
+                                                                        <li><a href="#">Another action</a></li>
+                                                                        <li><a href="#">Something else here</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li class="dropdown-header">Nav header</li>
+                                                                        <li><a href="#">Separated link</a></li>
+                                                                        <li><a href="#">One more separated link</a></li>
+                                                                    </ul>
+                                                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                                 <!--<button class="btn btn-primary col-lg-12" onclick="getMatricula()">Pesquisar</button>-->
                             </div>
                             <div class="col-lg-6">
-                                
+
                                 <input type="reset" class="btn btn-primary col-lg-12" value="Limpar" onclick="habilitaDestino()">
                             </div>
 
@@ -180,23 +180,250 @@
 
                             $row = pg_num_rows($result);
                             $i = 0;
-                            
-                            $endOrigem = "'". $endOrigem . "'";
-                            $endDestino = "'". $endDestino . "'";
-                            
+
+                            $endOrigem = "'" . $endOrigem . "'";
+                            $endDestino = "'" . $endDestino . "'";
+
                             while ($i < $row) {
                                 while ($opcao = pg_fetch_array($result)) {
                                     $opRegistration = $opcao['Registration'];
-                                    echo '<label class="list-group-item"><input type="radio" name="rotaM" class="pull-left" id="' . $opRegistration . '" onclick="calculaRota('. $endOrigem .', '. $endDestino .')"> ' . $opRegistration . '</label>';
+                                    echo '<label class="list-group-item"><input type="radio" name="rotaM" class="pull-left" id="' . $opRegistration . '" onclick="calculaRota(' . $endOrigem . ', ' . $endDestino . ')"> ' . $opRegistration . '</label>';
 
                                     $i++;
                                 }
                             }
-                            echo '<br/><button name="Pedir Carona" value="Pedir Carona" class="btn btn-primary">Pedir Carona</button>';
+                            echo '<br/><button name="Pedir Carona" value="Pedir Carona" class="btn btn-primary" data-toggle="modal" data-target="#modPerfil">Pedir Carona</button>';
                         }
                     }
                     ?>
-                    
+
+                    <!-- Modal -->
+                    <div class="modal fade bs-example-modal-lg" id="modPerfil" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Perfil Do Motorista</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="container">
+                                        <div class="row clearfix">
+                                            <div class="col-md-12 column">
+                                                <div class="media">
+                                                    <div class="pull-left"><img src="imgPerfil/thiago.jpg" class="media-heading img-circle img-responsive col-lg-3"><br/><br/><br/><div class="media-body pull-left">&nbsp;&nbsp;<p>Thiago Boff - 631210066</p></div></div>
+                                                    
+                                                </div>
+                                                
+                                                <h3 class="pull-left">Quem sou eu</h3>
+                                                <br/><br/><br/>Meu nome é Thiago e estou cursando Análise e Desenvolvimento de Sistemas na Faculdade de Tecnologia SENAC RS, entrei para o curso buscando conhecimentos na área de TI e destaque no mercado de trabalho. Estou no ramo como Técnico de Computador há mais de 5 anos, Trabalho o dia inteiro e vou para a Faculdade no turno da noite.
+                                                
+                                            </div>
+                                        </div>
+                                        <br/><br/>
+                                        <div class="row clearfix">
+                                            <div class="col-md-6 column">
+                                                <h3 class="text-center">
+                                                    Disponibilidade para oferecer Caronas
+                                                </h3>
+                                                <form>
+                                                <table class="table table-bordered table-hover table-condensed">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                
+                                                            </th>
+                                                            <th>
+                                                                Dia da Semana
+                                                            </th>
+                                                            <th>
+                                                                horário
+                                                            </th>
+                                                            <th>
+                                                                Destino
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Segunda
+                                                            </td>
+                                                            <td>
+                                                                18:00
+                                                            </td>
+                                                            <td>
+                                                                Faculdade
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Segunda
+                                                            </td>
+                                                            <td>
+                                                                22:30
+                                                            </td>
+                                                            <td>
+                                                                Casa
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Terça
+                                                            </td>
+                                                            <td>
+                                                                17:45
+                                                            </td>
+                                                            <td>
+                                                                Faculdade
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Terça
+                                                            </td>
+                                                            <td>
+                                                                21:40
+                                                            </td>
+                                                            <td>
+                                                                Casa
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Quarta
+                                                            </td>
+                                                            <td>
+                                                                18:00
+                                                            </td>
+                                                            <td>
+                                                                Faculdade
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Quarta
+                                                            </td>
+                                                            <td>
+                                                                22:40
+                                                            </td>
+                                                            <td>
+                                                                Casa
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Quinta
+                                                            </td>
+                                                            <td>
+                                                                18:00
+                                                            </td>
+                                                            <td>
+                                                                Faculdade
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Quinta
+                                                            </td>
+                                                            <td>
+                                                                22:00
+                                                            </td>
+                                                            <td>
+                                                                Casa
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Sexta
+                                                            </td>
+                                                            <td>
+                                                                18:00
+                                                            </td>
+                                                            <td>
+                                                                Faculdade
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="active">
+                                                            <td>
+                                                                <input type="checkbox" name="marcar">
+                                                            </td>
+                                                            <td>
+                                                                Sexta
+                                                            </td>
+                                                            <td>
+                                                                22:45
+                                                            </td>
+                                                            <td>
+                                                                Casa
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6 column pull-right">
+                                                <h3>
+                                                    O que dizem sobre Thiago Boff
+                                                </h3>
+                                                <div class="media col-lg-12 pull-right">
+                                                    <div href="#" class="pull-left "><img src="imgPerfil/jean.jpg" class="media-object img-circle col-lg-3 ">
+                                                    <div class="media-body col-lg-6">
+                                                        <h4 class="media-heading"> Jean </h4> 
+                                                        Já peguei carona com o Thiago, motorista sempre de bem com a vida, comunicativo, atento ao trânsito, nunca me deixou esperando.
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="media col-lg-12 pull-right">
+                                                    <div href="#" class="pull-left "><img src="imgPerfil/cristiano.jpg" class="media-object img-circle col-lg-3">
+                                                    <div class="media-body col-lg-6">
+                                                        <h4 class="media-heading"> Cristiano </h4> 
+                                                        Concordo com o comentário do Jean, só acho que o Thiago dirige muito rápido e escuta o som do carro muito alto.
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- aqui vai o conteudo da modal-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Sair</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmarCarona()">Confirmar Carona</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div><!-- essa div e a da lista da esquerda-->
 
                 <div class="col-lg-10" id="loadGmap"></div><!-- essa div e a do mapa-->

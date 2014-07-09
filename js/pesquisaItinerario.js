@@ -83,3 +83,8 @@ function getTurno() {
 function habilitaDestino() {
     $("#btnDestino").removeAttr("disabled");
 }
+
+function confirmarCarona(){
+    alert("Carona confirmada com sucesso, o motorista receberá uma notificação informando seu interesse");
+    window.location = "http://localhost:8080/senacaronas/pesquisaItinerario.php";
+}
